@@ -1,0 +1,4 @@
+/* Global entry stylesheet: tokens first, then base resets. Component styles
+   live alongside their components. */
+@import "./styles/tokens.css";
+@import "./styles/base.css";

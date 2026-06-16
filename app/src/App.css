@@ -1,0 +1,30 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.app__main {
+  width: 100%;
+  max-width: var(--content-max-width);
+  padding: var(--space-6) var(--space-4) var(--space-16);
+}
+
+@media (min-width: 640px) {
+  .app__main {
+    padding: var(--space-12) var(--space-6) var(--space-24);
+  }
+}
+
+/* Long-form copy blocks (welcome, placeholders). */
+.prose {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-loose);
+}
+
+.prose strong {
+  color: var(--color-text-primary);
+}

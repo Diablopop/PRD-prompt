@@ -1,0 +1,9 @@
+# Dependencies and build output (app/ has its own too, kept for safety)
+node_modules/
+dist/
+
+# Logs
+*.log
+
+# OS / editor cruft
+.DS_Store

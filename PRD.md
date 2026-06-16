@@ -74,13 +74,19 @@ Single choice. Drives how much the generated PRD instructs Claude Code to explai
 - I'm not sure → treated as Beginner (maximum plain-language explanation)
 
 ### Section 3 — Platform
-Single choice.
-- Mobile-first (designed for phones first)
-- Mobile-friendly / responsive (works on phone and desktop)
-- Desktop only
-- I'm not sure → defaults to mobile-friendly / responsive
+Single choice, framed by *where the app will mostly be used* (which tells Claude Code where to focus design effort), not by which devices can open it — every web app opens on both. "Mobile-first" was dropped as a user-facing option because it's a build technique, not a mobile-only outcome.
+- Mainly on phones — still works on a computer
+- Phones and computers equally *(recommended)*
+- Mainly on a computer — it's a desktop-style tool
+- I'm not sure → defaults to "phones and computers equally"
 
-### Section 4 — Features
+### Section 4 — Scope & budget
+Asked early because it frames the choices that follow — how many features to pick, and whether the backend, hosting, and repository answers should lean on free tiers.
+- Quick prototype vs polished product *(not sure → quick prototype)*
+- Budget: free services only · small budget · flexible *(not sure → free services only)*
+- Timeline (optional)
+
+### Section 5 — Features
 A short plain-language note appears at the top of this section: **each feature you add increases the app's complexity, cost, and build time — pick only what you actually need for a first version.**
 
 Multi-select checkboxes:
@@ -101,41 +107,36 @@ Multi-select checkboxes:
 - Dark mode
 - Multi-language
 
-Conditional rule: selecting **login** or **save data between visits** flags that a backend is needed in Section 5.
+Conditional rule: selecting **login** or **save data between visits** flags that a backend is needed in Section 6.
 
-### Section 5 — Backend
+### Section 6 — Backend
 1. Does your app need to store data or have user accounts?
    - Yes
    - No (static / front-end only)
-   - I'm not sure → if login or save-data was selected in Section 4, the app states a backend is needed
+   - I'm not sure → if login or save-data was selected in Section 5, the app states a backend is needed
 2. If yes, provider:
    - Supabase *(recommended — free tier includes database, login/auth, and file storage)*
    - Firebase *(Google, free tier)*
    - Let Claude recommend
    - I'm not sure → defaults to Supabase
 
-### Section 6 — Hosting
+### Section 7 — Hosting
 Where the app will live online. Single choice.
 - Vercel *(recommended — free tier, beginner-friendly)*
 - Netlify
 - GitHub Pages *(free, best for simple sites)*
 - Let Claude recommend → defaults to Vercel
 
-### Section 7 — Code repository
+### Section 8 — Code repository
 Includes a short "what is version control / a repo" explainer.
 - GitHub *(recommended — free)*
 - Other
 - I'm not sure → defaults to GitHub
 
-### Section 8 — Look and feel
+### Section 9 — Look and feel
 - Style: minimal / clean · playful / colorful · professional / corporate · bold · not sure *(not sure → minimal / clean, and the prompt asks Claude to recommend)*
 - Brand colors (optional, free text or color picker)
 - "Should feel like ___" reference app (optional, free text)
-
-### Section 9 — Scope
-- Quick prototype vs polished product *(not sure → quick prototype)*
-- Budget: free services only · small budget · flexible *(not sure → free services only)*
-- Timeline (optional)
 
 ### Section 10 — PRD output preferences
 - Format: Markdown (.md) *(recommended for Claude Code)* · Word (.docx) · Plain text *(not sure → Markdown)*
@@ -203,7 +204,7 @@ Every question is skippable. The app always produces a prompt, even with most fi
 |-----------|-------|---------------------|
 | M1 — Prompt template ✅ | Author and validate the prompt template (Section 6) by hand; paste sample outputs into Claude Code and confirm the PRDs are good | Read 2–3 generated PRDs and judge quality |
 | M2 — Wizard shell ✅ | Static wizard: screens, navigation, progress bar, localStorage persistence (no real prompt assembly yet). Built in `app/` (React + Vite). | Click through all steps on a phone; refresh mid-flow and confirm answers survive |
-| M3 — Question content ✅ | All ten sections wired with real questions and "I'm not sure" options, conditional backend logic, and plain-language "What's this?" explainer copy on the technical questions | Answer every question type; verify backend flag triggers from Section 4 |
+| M3 — Question content ✅ | All ten sections wired with real questions and "I'm not sure" options, conditional backend logic, and plain-language "What's this?" explainer copy on the technical questions | Answer every question type; verify backend flag triggers from Section 5 |
 | M4 — Output ✅ | Prompt assembly, review/edit screen, copy and download | Complete a full run, copy the prompt, paste into Claude Code, get a PRD |
 | M5 — Polish | Design tokens, accessibility pass, copy review, deploy to Vercel | Full run on mobile and desktop; accessibility check |
 

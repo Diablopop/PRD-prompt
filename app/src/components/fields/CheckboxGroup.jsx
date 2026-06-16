@@ -5,11 +5,18 @@ export default function CheckboxGroup({ question, value, onChange }) {
   const { id, label, choices, help } = question;
   const selected = Array.isArray(value) ? value : [];
 
-  const toggle = (choiceValue) => {
-    if (selected.includes(choiceValue)) {
-      onChange(selected.filter((v) => v !== choiceValue));
+  const exclusiveValues = choices.filter((c) => c.exclusive).map((c) => c.value);
+
+  const toggle = (choice) => {
+    const v = choice.value;
+    if (selected.includes(v)) {
+      onChange(selected.filter((x) => x !== v));
+    } else if (choice.exclusive) {
+      // An exclusive option (e.g. "I'm not sure") clears everything else.
+      onChange([v]);
     } else {
-      onChange([...selected, choiceValue]);
+      // Picking a normal option clears any exclusive option that was selected.
+      onChange([...selected.filter((x) => !exclusiveValues.includes(x)), v]);
     }
   };
 
@@ -29,7 +36,7 @@ export default function CheckboxGroup({ question, value, onChange }) {
               name={id}
               value={choice.value}
               checked={selected.includes(choice.value)}
-              onChange={() => toggle(choice.value)}
+              onChange={() => toggle(choice)}
             />
             <span className="choice__text">
               {choice.label}

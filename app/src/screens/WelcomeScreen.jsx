@@ -8,7 +8,7 @@ export default function WelcomeScreen() {
   return (
     <ScreenShell
       title="Build your PRD prompt"
-      blurb="Answer a few plain-language questions and we'll write a ready-to-paste prompt for Claude Code — which then turns it into a full plan for your app."
+      blurb="Want to build a web app? Answer a few questions and we'll write a ready-to-paste prompt for Claude Code to create the PRD."
       footer={
         <>
           <span />
@@ -21,9 +21,9 @@ export default function WelcomeScreen() {
       <div className="prose">
         <p>
           <strong>What&rsquo;s a PRD?</strong> A Product Requirements Document is
-          a clear written plan that describes what your app should do, who it&rsquo;s
-          for, and how it should work — so a developer (or Claude Code) knows
-          exactly what to build.
+          a written plan that describes what your app should do, who it&rsquo;s for,
+          and how it should work so a developer (or Claude Code) knows exactly what
+          to build.
         </p>
         <p>
           You don&rsquo;t need any technical knowledge. Every question has an

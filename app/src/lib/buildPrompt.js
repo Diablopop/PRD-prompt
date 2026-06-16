@@ -65,6 +65,9 @@ function testingLine(testing) {
 function featuresList(features) {
   const selected = Array.isArray(features) ? features : [];
   if (selected.length === 0) return "No specific features selected yet.";
+  if (selected.includes("unsure")) {
+    return "I'm not sure which features I need — please suggest a sensible, minimal set for this idea and explain each one in plain language.";
+  }
   // Iterate the canonical choice order so output is deterministic.
   const q = sections
     .flatMap((s) => s.questions)
@@ -134,6 +137,21 @@ function singleLine(answers, id, { unsureDefault } = {}) {
   return choiceLabel(id, v);
 }
 
+function platformLine(platform) {
+  switch (platform) {
+    case "phone-mostly":
+      return "Prioritize the mobile/phone experience; it should still work well on a computer.";
+    case "both":
+      return "Should work equally well on phones and computers (responsive design).";
+    case "desktop-mostly":
+      return "Primarily a desktop/computer experience; phone support is a lower priority.";
+    case "unsure":
+      return UNSURE;
+    default:
+      return null; // unanswered — omit the line
+  }
+}
+
 function formatLine(format) {
   switch (format) {
     case "docx":
@@ -170,7 +188,7 @@ export function buildPrompt(answers = {}) {
   push("");
 
   push("REQUIREMENTS");
-  const platform = singleLine(answers, "platform");
+  const platform = platformLine(answers.platform);
   if (platform) push(`- Platform: ${platform}`);
   push(`- Features I want: ${featuresList(answers.features)}`);
   push(`- Data storage / backend: ${backendLine(answers)}`);

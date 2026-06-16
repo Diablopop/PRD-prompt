@@ -80,12 +80,41 @@ export const sections = [
       {
         id: "platform",
         type: "single",
-        label: "Which devices should it work best on?",
-        help: '"Mobile-first" means the design starts with phones, then adapts to bigger screens. "Mobile-friendly" works well on both phone and computer. "Desktop only" is for tools people use at a computer. If you\'re unsure, mobile-friendly is the safe choice.',
+        label: "Where will it mostly be used?",
+        help: "This is about where people will mostly use your app, so Claude knows where to focus the design — not which devices can open it. Any web app opens on both phones and computers. If you're unsure, \"phones and computers equally\" is the safe choice.",
         choices: [
-          { value: "mobile-first", label: "Mobile-first (designed for phones first)" },
-          { value: "responsive", label: "Mobile-friendly (works on phone and desktop)", recommend: true },
-          { value: "desktop", label: "Desktop only" },
+          { value: "phone-mostly", label: "Mainly on phones — still works on a computer" },
+          { value: "both", label: "Phones and computers equally", recommend: true },
+          { value: "desktop-mostly", label: "Mainly on a computer — it's a desktop-style tool" },
+          { value: "unsure", label: "I'm not sure" },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: "scope",
+    title: "Scope & budget",
+    blurb: "How polished does the first version need to be?",
+    questions: [
+      {
+        id: "maturity",
+        type: "single",
+        label: "What are you building right now?",
+        choices: [
+          { value: "prototype", label: "A quick prototype to try the idea" },
+          { value: "polished", label: "A polished product" },
+          { value: "unsure", label: "I'm not sure" },
+        ],
+      },
+      {
+        id: "budget",
+        type: "single",
+        label: "Budget for paid services",
+        choices: [
+          { value: "free", label: "Free services only" },
+          { value: "small", label: "A small budget" },
+          { value: "flexible", label: "Flexible" },
           { value: "unsure", label: "I'm not sure" },
         ],
       },
@@ -104,6 +133,7 @@ export const sections = [
         label: "What should your app be able to do?",
         help: 'A few of these explained: "Save data between visits" means the app remembers things after you close it. "Admin dashboard" is a private screen for you to manage the app. "Real-time updates" means content changes live without refreshing, like a chat. Pick only what your first version truly needs.',
         choices: [
+          { value: "unsure", label: "I'm not sure — suggest features for me", exclusive: true },
           { value: "auth", label: "User accounts / login" },
           { value: "profiles", label: "User profiles" },
           { value: "persist", label: "Save data between visits" },
@@ -226,35 +256,6 @@ export const sections = [
         label: "Should feel like… (optional)",
         placeholder: "e.g. Notion, Airbnb",
         optional: true,
-      },
-    ],
-  },
-
-  {
-    id: "scope",
-    title: "Scope & budget",
-    blurb: "How polished does the first version need to be?",
-    questions: [
-      {
-        id: "maturity",
-        type: "single",
-        label: "What are you building right now?",
-        choices: [
-          { value: "prototype", label: "A quick prototype to try the idea" },
-          { value: "polished", label: "A polished product" },
-          { value: "unsure", label: "I'm not sure" },
-        ],
-      },
-      {
-        id: "budget",
-        type: "single",
-        label: "Budget for paid services",
-        choices: [
-          { value: "free", label: "Free services only" },
-          { value: "small", label: "A small budget" },
-          { value: "flexible", label: "Flexible" },
-          { value: "unsure", label: "I'm not sure" },
-        ],
       },
     ],
   },
